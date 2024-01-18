@@ -12,6 +12,7 @@ import com.backend.sportC.communication.Request.RegisterRequest;
 import com.backend.sportC.communication.Response.JWTResponse;
 import com.backend.sportC.service.AuthService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,7 +22,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public void register(@RequestBody RegisterRequest request) {
+    public void register(@Valid @RequestBody RegisterRequest request) {
         authService.register(request);
     }
 

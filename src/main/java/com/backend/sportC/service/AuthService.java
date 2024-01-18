@@ -12,6 +12,7 @@ import com.backend.sportC.communication.Response.JWTResponse;
 import com.backend.sportC.config.JwtService;
 import com.backend.sportC.entity.Role;
 import com.backend.sportC.entity.User;
+import com.backend.sportC.exception.UserNotFoundException;
 import com.backend.sportC.repository.RoleRepository;
 import com.backend.sportC.repository.UserRepository;
 
@@ -44,7 +45,8 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
                         request.getPassword()));
-        User user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+        User user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new UserNotFoundException(request.getUsername()));
 
         return authResponse(user);
     }

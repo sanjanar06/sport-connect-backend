@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,7 +34,7 @@ public class Profile {
 
     private String lastName;
 
-    @NotBlank(message = "Skill is mandatory")
+    @NotNull(message = "Skill is mandatory")
     @Enumerated(EnumType.STRING)
     private Skill skillLevel;
 
